@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "NetSuite-Export-Records",
+    "description": "Allows you to export a sales order to csv.",
+    "version": "0.1",
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "/images/file-16.png",
+            "32": "/images/file-32.png",
+            "48": "/images/file-48.png",
+            "128": "/images/file-128.png"
+        }
+    },
+    "icons": {
+        "16": "/images/file-16.png",
+        "32": "/images/file-32.png",
+        "48": "/images/file-48.png",
+        "128": "/images/file-128.png"
+    },
+    "permissions": [
+        "activeTab"
+    ]
+}

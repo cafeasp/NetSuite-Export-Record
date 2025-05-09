@@ -47,3 +47,45 @@ The CSV includes fields like:
 Make sure your `manifest.json` includes:
 ```json
 "permissions": ["activeTab", "tabs"],
+
+## 🔧 How to Install This Chrome Extension
+
+Follow these steps to install the extension manually in Chrome:
+
+## 📦 1. Clone or Download the Repository
+
+git clone https://github.com/cafeasp/NetSuite-Export-Record.git
+
+Or download it as a ZIP and extract it.
+
+## 🧭 2. Open Chrome Extensions Page
+
+Open Chrome
+
+Go to: chrome://extensions/
+
+Turn on Developer mode (top-right corner)
+
+## 📁 3. Load the Extension
+
+Click "Load unpacked"
+
+Select the folder where the extension is located (the one that contains manifest.json)
+
+## ✅ 4. Use the Extension
+
+Navigate to a NetSuite Sales Order record
+
+Click the "Export Record" button in the extension popup
+
+A CSV will be downloaded with the sales order details
+
+📌 Requirements
+
+Google Chrome browser
+
+Access to NetSuite (with records to test)
+
+🚫 Uninstall
+
+Go to chrome://extensions/ and click Remove on the extension card.

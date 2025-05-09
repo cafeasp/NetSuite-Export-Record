@@ -16,7 +16,7 @@ When you click the extension's **"Export"** button:
 Currently supports:
 - `salesorder`
 
-Other record types will show a friendly error message.
+Other record types will show a friendly error message. Developer can add other types (see popup.js line 27). Open your transaction and view the xml of the record by adding &xml=T then you can create a function similar to the sales order to pull the data.
 
 ## 📁 CSV Output
 

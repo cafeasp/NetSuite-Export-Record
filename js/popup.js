@@ -22,15 +22,17 @@ async function GetData(url) {
 
         if (resultJSON) {
             const record = resultJSON.nsResponse.record;
-            const recordType = record._recordType;
 
-            if (recordType === 'salesorder') {
-                const data = GetRecordData(resultJSON);
-                CreateCSVFile(data, record._id, 'salesorder');
-            } else {
+            const data = GetRecordData(resultJSON);
+            if (data.length === 0) {
                 errorMessage.innerHTML = `<b>Sorry</b><br/>This record type is not available for export at this time.`;
                 spinner.style.display = "none";
+                return;
             }
+            CreateCSVFile(data, record._id, record._recordType);
+            errorMessage.innerHTML = `<b>Success</b><br/>CSV file has been created.`;
+            spinner.style.display = "none";
+
         } else {
             throw new Error("Invalid XML response");
         }
@@ -50,7 +52,18 @@ function GetRecordData(data) {
             if (row._name === 'item') {
                 const lines = Array.isArray(row.line) ? row.line : [row.line];
                 lines.forEach(item => {
-                    recordItems.push(ProcessSalesOrderData(item, record));
+                    switch (record._recordType) {
+                        case 'salesorder':
+                            recordItems.push(ProcessSalesOrderData(item, record));
+                            break;
+                        case 'itemfulfillment':
+                            recordItems.push(ProcessItemFulfillmentData(item, record));
+                            break;
+                        default:
+
+                            break;
+                    }
+
                 });
             }
         });
@@ -58,7 +71,26 @@ function GetRecordData(data) {
 
     return recordItems;
 }
-
+function ProcessItemFulfillmentData(item, record) {
+    return {
+        internalid: record.id,
+        createddate: record.createddate,
+        createdfrom: record.createdfrom,
+        orderid: record.orderid,
+        statusRef: record.statusRef,
+        trandate: record.trandate,
+        tranid: record.tranid,
+        item: item.item,
+        description: item.description,
+        itemname: item.itemname,
+        itemquantity: item.quantity,
+        itemunitprice: item.unitprice,
+        itemupc: item.itemupc,
+        line: item.line,
+        orderline: item.orderline,
+        location: item.location || 0,
+    };
+}
 function ProcessSalesOrderData(item, record) {
     return {
         internalid: record.id,

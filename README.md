@@ -30,7 +30,7 @@ The CSV includes fields like:
 ## 💡 Customization
 
 - You can adjust the fields in the `ProcessSalesOrderData` function.
-- Additional record types can be added with their own processing logic in the `switch` statement in `GetData`.
+- Additional record types can be added with their own processing logic in the `switch` statement in `GetRecordData`.
 
 ## 🛠️ Technologies Used
 
